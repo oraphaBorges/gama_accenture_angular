@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(){
+    setTimeout(()=>{
+      console.log('Vc mudou o valor');
+      this.title = 'Novo titulo';
+    },2000)
+
+  }
+
+
 }
