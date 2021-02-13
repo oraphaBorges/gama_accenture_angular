@@ -1,7 +1,15 @@
 <p>exercicio-data-binding works!</p>
 
 <img [src]="imgURL" [width]="imgWidth">
-<button [disabled]="btnDisabled">Botão</button>
+<button (click)="clickButton($event)" [disabled]="btnDisabled">Botão</button>
+<button (click)="changeEnbled()" (mouseover)="mouseEmcima()">Botão disable</button>
 <p [attr.aria-label]="TextoAlternativo">
     Um texto qualquer...
+    {{meuTexto.length}}
 </p>
+<input type="text" [value]="meuTexto"
+                   (input)="aoDigitar($event)">
+
+<Button (click)="onSave($event)">Salvar</Button>
+{{count}}
+<app-contador [valor]="count" (outCount)="outcount($event)"></app-contador>

@@ -16,5 +16,10 @@ export class AppComponent {
 
   }
 
+  getEvent(event:any){
+    console.log(event);
+    
+  }
+
 
 }
