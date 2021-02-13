@@ -8,6 +8,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class ExercicioDataBindingComponent implements OnInit {
 
   @Output() outInfo =  new EventEmitter()
+  @Output() twowdbChange =  new EventEmitter()
   
 
   imgURL = "https://www.vhv.rs/dpng/d/424-4247906_gengar-png-download-mega-gengar-png-transparent-png.png"
@@ -16,6 +17,7 @@ export class ExercicioDataBindingComponent implements OnInit {
   TextoAlternativo="oi"
   meuTexto = "oi"
   count=0
+  twowdb2=0
   constructor() { }
 
   ngOnInit(): void {
@@ -41,5 +43,8 @@ export class ExercicioDataBindingComponent implements OnInit {
   }
   outcount(coun:number){
     this.count = coun
+  }
+  twowdbCahnge(event:number){
+    this.twowdb2 = event
   }
 }

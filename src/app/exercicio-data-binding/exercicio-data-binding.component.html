@@ -11,5 +11,5 @@
                    (input)="aoDigitar($event)">
 
 <Button (click)="onSave($event)">Salvar</Button>
-{{count}}
-<app-contador [valor]="count" (outCount)="outcount($event)"></app-contador>
+{{count}} {{twowdb2}}
+<app-contador [valor]="count" (outCount)="outcount($event)" [(twowdb)]="twowdb2"></app-contador>
