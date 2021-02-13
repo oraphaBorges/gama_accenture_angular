@@ -6,19 +6,19 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AreaLogadaComponent } from './area-logada/area-logada.component';
+import { DashboardComponent } from './area-logada/dashboard/dashboard.component';
+import { LancamentosComponent } from './area-logada/lancamentos/lancamentos.component';
+import { PlanosContaComponent } from './area-logada/planos-conta/planos-conta.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HomeComponent } from './home/home.component';
-import { LancamentosComponent } from './lancamentos/lancamentos.component';
+import { Error404Component } from './error404/error404.component';
 import { LoginComponent } from './login/login.component';
-import { PlanosContaComponent } from './planos-conta/planos-conta.component';
 import { ContadorComponent } from './shared/components/contador/contador.component';
 import { DiretivasComponent } from './shared/components/diretivas/diretivas.component';
 import { ExercicioDataBindingComponent } from './shared/components/exercicio-data-binding/exercicio-data-binding.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { PipesComponent } from './shared/components/pipes/pipes.component';
-import { Error404Component } from './error404/error404.component';
 
 
 registerLocaleData(localePtBr, 'pt-br')
@@ -27,7 +27,6 @@ registerLocaleData(localePtBr, 'pt-br')
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent,
     FooterComponent,
     ExercicioDataBindingComponent,
     ContadorComponent,
@@ -39,6 +38,7 @@ registerLocaleData(localePtBr, 'pt-br')
     DashboardComponent,
     PlanosContaComponent,
     Error404Component,
+    AreaLogadaComponent,
   ],
   imports: [
     BrowserModule,
