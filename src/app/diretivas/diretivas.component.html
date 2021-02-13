@@ -1,0 +1,35 @@
+<button (click)="trocarValor()">trocar valor</button>
+<!-- ngIf -->
+{{deveExibir}}
+<p *ngIf="deveExibir; else blocoElse"> 
+    Meu Texto
+</p>
+
+<ng-template #blocoElse>
+    <p>else</p>
+</ng-template>
+
+<p [hidden]="!deveExibir"> 
+    Meu Texto Hidden
+</p>
+<p *ngIf="(7+5)>7"> 
+    Meu Texto d
+</p>
+
+<div *ngIf="deveExibir; then b1;else b2"></div>
+<ng-template #b1>
+    <p>Bloco1</p>
+</ng-template>
+<ng-template #b2>
+    <p>Bloco1</p>
+</ng-template>
+
+<!-- ngFor -->
+<button (click)="addItem('bs')">Add item</button>
+
+<ul>
+    <li *ngFor="let item of lista; let index = index; let count = count; let last = last;let f = first">
+        {{index}} - {{item}} - {{count}} - {{last? 'esse é o ultimo':
+                                             f?'esse é o primeiro':'meio do caminho'}}
+    </li>
+</ul>
