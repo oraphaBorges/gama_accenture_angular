@@ -26,7 +26,7 @@ registerLocaleData(localePtBr, 'pt-br')
     ExercicioDataBindingComponent,
     ContadorComponent,
     DiretivasComponent,
-    PipesComponent
+    PipesComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-<p>{{valorMonetario|currency:'BRL'}}</p>
+<!-- <p>{{valorMonetario|currency:'BRL'}}</p>
 <p>{{valorMonetario|currency}}</p>
 <p>{{data|date:'full'|uppercase}}</p>
 <p>{{data|date:'full'|titlecase}}</p>
@@ -7,4 +7,15 @@
 <p>{{'NOME'|lowercase}}</p>
 <p>{{'nome'|uppercase}}</p>
 <p>{{valorMonetario|number:'1.0-0'}}</p>
-<p>{{filme|json}}</p>
+<p>{{filme|json}}</p> -->
+
+<!-- Exercício -->
+<!-- <p>{{compras|json}}</p> -->
+<div *ngFor="let item of compras">
+    <p>Pruduto:<strong>{{item.produto|uppercase}}</strong></p>
+    <p>Valor: {{item.valor|currency}}</p>
+    <p>Quantidade: {{item.quantidade}}</p>
+    <p>Peso: {{item.peso|number:'1.1-2'}}kg</p>
+    <p>Data: {{item.data|date:"EEEE d 'de' MMMM 'de' y 'às' h:mm"}}</p>
+    <hr>
+</div>
