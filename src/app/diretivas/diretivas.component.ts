@@ -12,11 +12,27 @@ export class DiretivasComponent {
 
 deveExibir = true
 lista = ['a','b','c','d']
+
+classeCss=""
+
 trocarValor(){
   this.deveExibir = !this.deveExibir
 }
 
 addItem(item:string){
   this.lista.push(item)
+}
+
+setRed(){
+  this.classeCss = 'vermelho'
+}
+setGreen(){
+  this.classeCss = 'verde'
+}
+getClass(valor:number){
+  return{
+    'vermelho':valor%2==0,
+    'verde':valor%2!=0,
+  }
 }
 }
