@@ -12,4 +12,17 @@
 
 <Button (click)="onSave($event)">Salvar</Button>
 {{count}} {{twowdb2}}
+
+<!-- Exercpicio data bind -->
 <app-contador [valor]="count" (outCount)="outcount($event)" [(twowdb)]="twowdb2"></app-contador>
+
+<!-- Ng Model -->
+<input type="text" [(ngModel)]="meuNovoTexto"><br>
+<p>Valor em meu novo texto: {{meuNovoTexto}} {{selectV}}</p>
+
+<select [(ngModel)]="selectV">
+    <option value="v">v</option>
+    <option value="f">f</option>
+    <option value="w">w</option>
+</select>
+<br><br><br><br><br><br><br><br>

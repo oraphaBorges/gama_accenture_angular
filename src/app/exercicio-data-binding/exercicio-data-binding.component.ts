@@ -18,6 +18,8 @@ export class ExercicioDataBindingComponent implements OnInit {
   meuTexto = "oi"
   count=0
   twowdb2=0
+  meuNovoTexto=""
+  selectV=""
   constructor() { }
 
   ngOnInit(): void {
