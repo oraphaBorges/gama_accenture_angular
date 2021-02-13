@@ -39,9 +39,13 @@
     <li *ngFor="let categoria of MEMES_AGRUPADOS_POR_CATEGORIA">
         <h1>{{categoria.categoria}}</h1>
         <ul>
-            <li *ngFor="let meme of categoria.memes">
+            <li *ngFor="let meme of categoria.memes;let first = first">
                 <h4>{{meme.titulo}}</h4>
-                <img src="{{IMG_BASE_URL}}{{meme.imagemURL}}" alt="">
+                <img src="{{IMG_BASE_URL}}{{meme.imagemURL}}" width="100px"
+                    *ngIf="!first; else blocoMemeOmitido">
+                <ng-template #blocoMemeOmitido>
+                    <p>primeiro meme</p>
+                </ng-template>
             </li>
         </ul>
     </li>
