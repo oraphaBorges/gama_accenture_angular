@@ -33,3 +33,16 @@
                                              f?'esse é o primeiro':'meio do caminho'}}
     </li>
 </ul>
+<!-- exercicio -->
+
+<ul>
+    <li *ngFor="let categoria of MEMES_AGRUPADOS_POR_CATEGORIA">
+        <h1>{{categoria.categoria}}</h1>
+        <ul>
+            <li *ngFor="let meme of categoria.memes">
+                <h4>{{meme.titulo}}</h4>
+                <img src="{{IMG_BASE_URL}}{{meme.imagemURL}}" alt="">
+            </li>
+        </ul>
+    </li>
+</ul>
