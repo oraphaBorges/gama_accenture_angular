@@ -11,7 +11,7 @@ export class AppComponent {
   constructor(){
     setTimeout(()=>{
       console.log('Vc mudou o valor');
-      this.title = 'Novo titulo';
+      this.title = 'Novo titulo 3';
     },2000)
 
   }
