@@ -1,17 +1,27 @@
 <div class="container pt-5 text-center">
-
     <h1> Seja bem-vindo ao Bankline!</h1>
-    <form class="form-signin">
-    <div class="form-group mt-3">
-    <input type="text" class="form-control" placeholder="Usuário">
-    </div>
-    <div class="form-group mt-3">
-    <input type="password" class="form-control" placeholder="Senha">
-    </div>
-    
-    <button type="submit" class="btn btn-primary mt-3">
-    Entrar
-    </button>
-    
+    <form class="form-signin" #form="ngForm" (submit)="onSubmit(form)">
+        <div class="form-group mt-3">
+            <input autocomplete="username" type="text" class="form-control" placeholder="Usuário"
+                [(ngModel)]="usuario" name="usuario" required #usuairioInput
+                [class.is-invalid]="exibeErro('usuario',form)">
+            <div class="invalid-feedback">
+                Usuario invalido
+            </div>
+            </div>
+        <div class="form-group mt-3">
+            <input autocomplete="current-password" type="password" class="form-control" placeholder="Senha"
+                [(ngModel)]="senha" name="senha" required minlength="6" #senhaInput
+                [class.is-invalid]="exibeErro('senha',form)">
+            <div class="invalid-feedback" *ngIf="form.controls?.senha?.errors?.required">
+                Senha invalido
+            </div>
+            <div class="invalid-feedback" *ngIf="form.controls?.senha?.errors?.minlength">
+                <small>senha muito curta</small>
+            </div>
+        </div>        
+        <button type="submit" class="btn btn-primary mt-3">
+        Entrar
+        </button>    
     </form> 
-    </div> 
+</div> 
