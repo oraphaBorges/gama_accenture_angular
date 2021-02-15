@@ -1,5 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { LoginResponse } from './login.interfaces';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +18,10 @@ export class LoginComponent implements OnInit {
   usuario=""
   senha=""
 
-  constructor() { }
+  constructor(
+    private loginService: LoginService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -23,11 +30,14 @@ export class LoginComponent implements OnInit {
     if(!form.valid){
       form.controls['usuario'].markAsTouched;
       form.controls['senha'].markAsTouched;
-      if(!form.controls.usuario.valid)
+      if(!form.controls.usuario.valid){
         this.UsuairioInput?.nativeElement.focus()
-      if(!form.controls.senha.valid)
+        return;
+      }
+      if(!form.controls.senha.valid){
         this.SenhaInput?.nativeElement.focus()
-      
+        return;
+      }
     }  
     this.login()
   }
@@ -39,9 +49,17 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    // this.usuario
-    // this.senha
-    console.log(this.usuario,this.senha);
-    
+    const credenciais = {usuario:this.usuario,senha:this.senha}
+    this.loginService.logar(credenciais).subscribe(
+      response =>this.onSucessLogin(response),
+      error =>this.onErrorLogin(error))
+  }
+
+  onSucessLogin(response:LoginResponse){
+    localStorage.setItem('token',response.token)
+    this.router.navigate(['dashboard'])
+  }
+  onErrorLogin(error:HttpErrorResponse){
+    console.log(error);
   }
 }
