@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { take } from 'rxjs/operators';
+import { finalize, take } from 'rxjs/operators';
 import { AuthService } from '../shared/services/auth.service';
 import { LoginResponse } from './login.interfaces';
 import { LoginService } from './login.service';
@@ -19,6 +19,9 @@ export class LoginComponent implements OnInit {
 
   usuario=""
   senha=""
+
+  loading:boolean = false
+  erroLogin:boolean = false
 
   constructor(
     private loginService: LoginService,
@@ -51,21 +54,25 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    this.erroLogin = false
+    this.loading = true
     const credenciais = {usuario:this.usuario,senha:this.senha}
     this.loginService.logar(credenciais)
       .pipe(
         take(1),
+        finalize(()=>this.loading = true)
       )
       .subscribe(
-        response =>this.onSucessLogin(response),
-        error =>this.onErrorLogin(error)
-      )
-  }
-
-  onSucessLogin(response:LoginResponse){
+        response =>this.onSucessLogin(),
+        error =>this.onErrorLogin()
+        )
+      }
+      
+  onSucessLogin(){
     this.router.navigate(['dashboard'])
   }
-  onErrorLogin(error:HttpErrorResponse){
-    console.log(error);
+  onErrorLogin(){
+    this.erroLogin = true
+    this.loading = false
   }
 }

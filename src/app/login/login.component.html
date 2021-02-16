@@ -19,9 +19,19 @@
             <div class="invalid-feedback" *ngIf="form.controls?.senha?.errors?.minlength">
                 <small>senha muito curta</small>
             </div>
-        </div>        
-        <button type="submit" class="btn btn-primary mt-3">
-        Entrar
-        </button>    
+        </div>
+        <div class="invalid-feedback" *ngIf="erroLogin">
+            Senha invalido ou senha inválidos
+        </div>
+        <button class="btn btn-primary mt-3" type="button" disabled *ngIf="loading;else spinner">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span class="sr-only">Loading...</span>
+        </button> 
+        <ng-template #spinner>
+            <button type="submit" class="btn btn-primary mt-3" >
+                Entrar
+            </button>
+        </ng-template>
+            
     </form> 
 </div> 
