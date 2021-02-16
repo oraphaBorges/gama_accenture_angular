@@ -9,6 +9,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { Error404Component } from './error404/error404.component';
 import { LoginComponent } from './login/login.component';
 import { IsAuthenticatedGuard } from './shared/guards/is-authenticated/is-authenticated.guard';
+import { IsntAuthenticatedGuard } from './shared/guards/isnt-authenticated/isnt-authenticated.guard';
 
 const routes: Routes = [{
     path:'',
@@ -30,10 +31,12 @@ const routes: Routes = [{
       },
      ]},{
       path:'cadastro',
-      component:CadastroComponent
+      component:CadastroComponent,
+      canActivate:[IsntAuthenticatedGuard],
     },{
       path:'login',
-      component:LoginComponent
+      component:LoginComponent,
+      canActivate:[IsntAuthenticatedGuard],
     },{
       path:'**',
       component:Error404Component

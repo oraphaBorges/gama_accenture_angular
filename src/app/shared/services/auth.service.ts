@@ -5,6 +5,11 @@ import { Usuario } from '../interfaces/usuario.interface';
   providedIn: 'root'
 })
 export class AuthService {
+  logout() {
+    delete this.usuario
+    delete this.token
+    localStorage.clear()
+  }
   
   usuario:Usuario|undefined
   token:string|undefined
@@ -44,7 +49,7 @@ export class AuthService {
       
     const tokenGuardado =  localStorage.getItem('token')
     if(tokenGuardado){
-      this.token = JSON.parse(tokenGuardado)
+      this.token = tokenGuardado
       return this.token
     }
     return undefined
