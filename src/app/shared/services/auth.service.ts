@@ -11,6 +11,12 @@ export class AuthService {
 
   constructor() { }
 
+  isLogged(){
+    if(this.getUsuario() && this.getToken())
+      return true
+    return false
+  }
+
   setUsuario(usuario: Usuario){
     this.usuario = usuario
     localStorage.setItem('usuario',JSON.stringify(usuario))

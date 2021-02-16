@@ -8,10 +8,12 @@ import { PlanosContaComponent } from './area-logada/planos-conta/planos-conta.co
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { Error404Component } from './error404/error404.component';
 import { LoginComponent } from './login/login.component';
+import { IsAuthenticatedGuard } from './shared/guards/is-authenticated/is-authenticated.guard';
 
 const routes: Routes = [{
     path:'',
     component:AreaLogadaComponent,
+    canActivate:[IsAuthenticatedGuard],
     children:[{
         path:'',
         redirectTo:'dashboard',
