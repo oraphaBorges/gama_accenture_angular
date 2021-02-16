@@ -2,6 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { take } from 'rxjs/operators';
+import { AuthService } from '../shared/services/auth.service';
 import { LoginResponse } from './login.interfaces';
 import { LoginService } from './login.service';
 
@@ -20,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -50,13 +52,17 @@ export class LoginComponent implements OnInit {
 
   login(){
     const credenciais = {usuario:this.usuario,senha:this.senha}
-    this.loginService.logar(credenciais).subscribe(
-      response =>this.onSucessLogin(response),
-      error =>this.onErrorLogin(error))
+    this.loginService.logar(credenciais)
+      .pipe(
+        take(1),
+      )
+      .subscribe(
+        response =>this.onSucessLogin(response),
+        error =>this.onErrorLogin(error)
+      )
   }
 
   onSucessLogin(response:LoginResponse){
-    localStorage.setItem('token',response.token)
     this.router.navigate(['dashboard'])
   }
   onErrorLogin(error:HttpErrorResponse){

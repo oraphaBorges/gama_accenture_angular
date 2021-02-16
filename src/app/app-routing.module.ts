@@ -10,7 +10,7 @@ import { Error404Component } from './error404/error404.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [{
-    path:'auth',
+    path:'',
     component:AreaLogadaComponent,
     children:[{
         path:'',
