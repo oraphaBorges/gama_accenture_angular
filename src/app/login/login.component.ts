@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
     this.loginService.logar(credenciais)
       .pipe(
         take(1),
-        finalize(()=>this.loading = true)
+        finalize(()=>this.loading = false)
       )
       .subscribe(
         response =>this.onSucessLogin(),
