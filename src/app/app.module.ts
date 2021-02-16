@@ -4,6 +4,8 @@ import localePtBr from '@angular/common/locales/pt';
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgxMaskModule} from 'ngx-mask';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +22,7 @@ import { ExercicioDataBindingComponent } from './shared/components/exercicio-dat
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { PipesComponent } from './shared/components/pipes/pipes.component';
+
 
 
 registerLocaleData(localePtBr, 'pt-br')
@@ -46,6 +49,7 @@ registerLocaleData(localePtBr, 'pt-br')
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [{
     provide:LOCALE_ID,
