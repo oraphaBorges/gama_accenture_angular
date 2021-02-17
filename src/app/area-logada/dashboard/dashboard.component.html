@@ -1,1 +1,98 @@
-<p>dashboard works! {{usuario.nome}}</p>
+<main class="container p-4">
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4"> Seja bem-vindo, {{ usuario!.nome }}! </h1>
+        <p class="lead"> Acompanhe abaixo suas contas e seus lançamentos. </p>
+      </div>
+    </div>
+  
+    <form class="row g-3 p-5">
+      <div class="col-md-6">
+        <label for="inicio">Início</label>
+        <input type="date" class="form-control" id="inicio" name="inicio"
+            [(ngModel)]="inicio" (ngModelChange)="getDashboard()">
+      </div>
+      <div class="col-md-6">
+        <label for="inicio">Fim</label>
+        <input type="date" class="form-control" id="fim" name="fim"
+            [(ngModel)]="fim" (ngModelChange)="getDashboard()" >
+      </div>
+    </form>
+
+    <div *ngIf="estaCarregando;else bloco">
+        <div class="spinner-grow text-primary mt-3" role="status">
+            <span class="sr-only"></span>
+        </div>
+    </div>
+  
+    <ng-template #bloco>
+    <div class="row">
+      <div class="col">
+        <div class="card" [ngClass]="getBordaSaldoCSS(daashboard!.contaBanco.saldo)">
+          <h5 class="card-header">Conta Débito</h5>
+          <div class="card-body">
+            <p class="card-text"> Dados do período selecionado.</p>
+  
+            <table class="table table-hover"
+            *ngIf="daashboard!.contaBanco.lancamentos.length>0;else semLancamentosDebitos">
+              <thead>
+                <tr>
+                  <th scope="col">Data</th>
+                  <th scope="col">Descrição</th>
+                  <th scope="col">Valor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let lancamento of daashboard!.contaBanco.lancamentos">
+                  <td>{{lancamento.data|date}}</td>
+                  <td>{{lancamento.descricao}}</td>
+                  <td [ngClass]="getTextSaldoCSS(lancamento.valor)">{{lancamento.valor|currency}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <ng-template #semLancamentosDebitos>
+                <p>Sem Lancamentos</p>
+            </ng-template>
+  
+            <h5 class="card-title" [ngClass]="getTextSaldoCSS(daashboard!.contaBanco.saldo)"> Saldo total da conta: {{daashboard!.contaBanco.saldo|currency}}</h5>
+  
+          </div>
+        </div>
+      </div>
+  
+      <div class="col">
+        <div class="card"[ngClass]="getBordaSaldoCSS(daashboard!.contaCredito.saldo)">
+          <h5 class="card-header">Conta Crédito</h5>
+          <div class="card-body">
+            <p class="card-text"> Dados do período selecionado.</p>
+  
+            <table class="table table-hover"
+                *ngIf="daashboard!.contaCredito.lancamentos.length>0;else semLancamentosCredito">
+              <thead>
+                <tr>
+                  <th scope="col">Data</th>
+                  <th scope="col">Descrição</th>
+                  <th scope="col">Valor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let lancamento of daashboard!.contaCredito.lancamentos">
+                    <td>{{lancamento.data|date}}</td>
+                    <td>{{lancamento.descricao}}</td>
+                    <td [ngClass]="getTextSaldoCSS(lancamento.valor)">{{lancamento.valor|currency}}</td>
+                  </tr>
+              </tbody>
+            </table>
+            <ng-template #semLancamentosCredito>
+                <p>Sem Lancamentos</p>
+            </ng-template>
+  
+            <h5 class="card-title" [ngClass]="getTextSaldoCSS(daashboard!.contaCredito.saldo)"> Saldo total da conta: {{daashboard!.contaCredito.saldo|currency}}</h5>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+    </ng-template>
+  
+  </main>
