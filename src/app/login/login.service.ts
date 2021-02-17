@@ -20,7 +20,7 @@ export class LoginService {
   ) { }
 
   logar(credencais:LoginCredenciais):Observable<LoginResponse>{
-    return this.http.post<LoginResponse>(this.API_URL,credencais)
+    return this.http.post<LoginResponse>(this.API_URL+'login',credencais)
       .pipe(
         tap(response=>{
           this.authService.setToken(response.token)
